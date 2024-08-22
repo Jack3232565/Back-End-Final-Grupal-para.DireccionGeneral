@@ -10,8 +10,8 @@ class Roles(Base):
     Nombre = Column(String(50), nullable=False)
     Descripcion = Column(Text)
     Estatus = Column(Integer, default=1)  # Almacenará 1 (equivalente a b'1') o 0 (equivalente a b'0')
-    Fecha_Registro = Column(DateTime)
-    Fecha_Actualizacion = Column(DateTime, nullable=True, default=None)
+    Fecha_Registro = Column(DateTime, nullable=False, server_default=func.now())
+    Fecha_Actualizacion = Column(DateTime, nullable=True)  # Permite valores nulos
 
     @property
     def estatus(self):
@@ -21,4 +21,6 @@ class Roles(Base):
     def estatus(self, value):
         self.Estatus = 1 if value else 0
 
+
     usuarios = relationship("UsuarioRoles", back_populates="rol")
+    

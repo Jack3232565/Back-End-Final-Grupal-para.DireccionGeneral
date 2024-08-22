@@ -6,7 +6,7 @@ import logging
 from routes.persons import person
 from routes.users import user
 from routes.usuarios import usuario
-from routes.rol import rol
+from routes.roles import roles
 from routes.tbb_usuarios import tbb_usuarios_router
 from routes.userrol import userrol
 from routes.cirugia import cirugia_router
@@ -52,7 +52,7 @@ app.add_middleware(
 app.include_router(user)
 app.include_router(usuario, tags=["Usuarios"])
 app.include_router(person)
-app.include_router(rol)
+app.include_router(roles)
 app.include_router(tbb_usuarios_router)
 app.include_router(userrol)
 app.include_router(cirugia_router)
