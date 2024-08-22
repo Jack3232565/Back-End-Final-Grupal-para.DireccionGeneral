@@ -30,4 +30,3 @@ def read_bitacora(id: int, db: Session = Depends(get_db)):
     if db_bitacora is None:
         raise HTTPException(status_code=404, detail="Elemento de la Bitacora no Encontrado")
     return db_bitacora
-
