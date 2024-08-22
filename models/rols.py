@@ -10,8 +10,8 @@ class Roles(Base):
     Nombre = Column(String(50), nullable=False)
     Descripcion = Column(Text)
     Estatus = Column(Integer, default=1)  # Almacenará 1 (equivalente a b'1') o 0 (equivalente a b'0')
-    Fecha_Registro = Column(DateTime, nullable=False, server_default=func.now())
-    Fecha_Actualizacion = Column(DateTime, onupdate=func.now())
+    Fecha_Registro = Column(DateTime)
+    Fecha_Actualizacion = Column(DateTime, nullable=True, default=None)
 
     @property
     def estatus(self):
