@@ -1,29 +1,15 @@
-from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey, Enum
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey
 from sqlalchemy.dialects.mysql import LONGTEXT
 from sqlalchemy.orm import relationship
-from sqlalchemy.sql import func
 from config.db import Base
-import models.persons
-import enum
-
-class MyEstatus(str,enum.Enum):
-    Activo = "Activo"
-    Inactivo = "Inactivo"
-    Bloqueado = "Bloqueado"
-    Suspendido = "Suspendido"
-    
 
 class User(Base):
-    __tablename__ = "tbb_usuarios"
+    __tablename__ = "users"
 
-    ID = Column(Integer, primary_key=True, index=True)
-    Persona_ID = Column(Integer, ForeignKey("tbb_personas.id"))
-    Nombre_Usuario = Column(String(60))
-    Correo_Electronico = Column(String(100))
-    Contrasena = Column(String(40))
-    Numero_Telefonico_Movil = Column(String(20))
-    Estatus = Column(Enum(MyEstatus))
-    Fecha_Registro = Column(DateTime, default=func.now())
-    Fecha_Actualizacion = Column(DateTime, default=func.now(), onupdate=func.now())
-    # Clave foránea para la relación uno a uno con User
-    
+    id = Column(Integer, primary_key=True, index=True)
+    usuario = Column(String(255))
+    password = Column(LONGTEXT)
+    created_at = Column(DateTime)
+    estatus = Column(Boolean, default=False)
+    Id_persona = Column(Integer)
+    #items = relationship("Item", back_populates="owner") Clave Foranea

@@ -4,13 +4,13 @@ from sqlalchemy.orm import Session
 import models, schemas
 
 def get_rol(db: Session, id: int):
-    return db.query(models.rols.Rol).filter(models.rols.Rol.ID == id).first()
+    return db.query(models.rols.Roles).filter(models.rols.Roles.ID == id).first()
 
 def get_rol_by_nombre(db: Session, nombre: str):
-    return db.query(models.rols.Rol).filter(models.rols.Rol.Nombre == nombre).first()
+    return db.query(models.rols.Roles).filter(models.rols.Roles.Nombre == nombre).first()
 
 def get_rols(db: Session):
-    return db.query(models.rols.Rol).all()
+    return db.query(models.rols.Roles).all()
 
 def create_rol(db: Session, rol: schemas.rols.RolCreate):
     db_rol = models.rols.Rol(   Nombre=rol.Nombre,
@@ -25,7 +25,7 @@ def create_rol(db: Session, rol: schemas.rols.RolCreate):
     return db_rol
 
 def update_rol(db: Session, id: int, rol: schemas.rols.RolUpdate):
-    db_rol = db.query(models.rols.Rol).filter(models.rols.Rol.ID == id).first()
+    db_rol = db.query(models.rols.Roles).filter(models.rols.Rol.ID == id).first()
     if db_rol:
         for var, value in vars(rol).items():
             setattr(db_rol, var, value) if value else None
@@ -34,7 +34,7 @@ def update_rol(db: Session, id: int, rol: schemas.rols.RolUpdate):
     return db_rol
 
 def delete_rol(db: Session, id: int):
-    db_rol = db.query(models.rols.Rol).filter(models.rols.Rol.ID == id).first()
+    db_rol = db.query(models.rols.Roles).filter(models.rols.Roles.ID == id).first()
     if db_rol:
         db.delete(db_rol)
         db.commit()

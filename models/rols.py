@@ -1,16 +1,24 @@
-from sqlalchemy import Column, Integer, String, Boolean, DateTime
-from sqlalchemy.dialects.mysql import LONGTEXT
-from sqlalchemy.orm import relationship
-from sqlalchemy.sql import func
+from sqlalchemy import Column, Integer, String, Text, Boolean, DateTime, func
 from config.db import Base
+from sqlalchemy.orm import relationship
 
-class Rol(Base):
-    __tablename__ = "tbc_roles"
 
-    ID = Column(Integer, primary_key=True, index=True)
-    Nombre = Column(String(60))
-    Descripcion = Column(LONGTEXT)
-    Estatus = Column(Boolean)
-    Fecha_Registro = Column(DateTime, nullable=False, default=func.now())
-    Fecha_Actualizacion = Column(DateTime, nullable=True, onupdate=func.now())
+class Roles(Base):
+    __tablename__ = 'tbc_roles'
 
+    id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
+    Nombre = Column(String(50), nullable=False)
+    Descripcion = Column(Text)
+    Estatus = Column(Integer, default=1)  # Almacenará 1 (equivalente a b'1') o 0 (equivalente a b'0')
+    Fecha_Registro = Column(DateTime, nullable=False, server_default=func.now())
+    Fecha_Actualizacion = Column(DateTime, onupdate=func.now())
+
+    @property
+    def estatus(self):
+        return self.Estatus == 1
+
+    @estatus.setter
+    def estatus(self, value):
+        self.Estatus = 1 if value else 0
+
+    usuarios = relationship("UsuarioRoles", back_populates="rol")

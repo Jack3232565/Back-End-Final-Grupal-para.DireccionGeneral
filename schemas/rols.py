@@ -16,7 +16,7 @@ class RolUpdate(RolBase):
     pass
 
 class Rol(RolBase):
-    ID: int
+    id: int
     
     class Config:
         from_attributes = True

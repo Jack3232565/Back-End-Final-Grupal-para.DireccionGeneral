@@ -4,10 +4,10 @@ from sqlalchemy.orm import Session
 import models, schemas
 
 def get_userrol(db: Session, id_user: int, id_rol: int):
-    return db.query(models.usersrols.UserRol).filter(models.usersrols.UserRol.Usuario_ID == id_user, models.usersrols.UserRol.Rol_ID== id_rol).first()
+    return db.query(models.usersrols.UsuarioRoles).filter(models.usersrols.UsuarioRoles.Usuario_ID == id_user, models.usersrols.UsuarioRoles.Rol_ID== id_rol).first()
 
 def get_usersrols(db: Session):
-    return db.query(models.usersrols.UserRol).all()
+    return db.query(models.usersrols.UsuarioRoles).all()
 
 def create_userrol(db: Session, userrol: schemas.usersrols.UserRolCreate):
     db_userrol = models.usersrols.UserRol(Usuario_ID=userrol.Usuario_ID, 
@@ -22,7 +22,7 @@ def create_userrol(db: Session, userrol: schemas.usersrols.UserRolCreate):
     return db_userrol
 
 def update_userrol(db: Session, id_user: int, id_rol: int, userrol: schemas.usersrols.UserRolUpdate):
-    db_userrol = db.query(models.usersrols.UserRol).filter(models.usersrols.UserRol.Usuario_ID == id_user,models.usersrols.UserRol.Rol_ID == id_rol).first()
+    db_userrol = db.query(models.usersrols.UsuarioRoles).filter(models.usersrols.UsuarioRoles.Usuario_ID == id_user,models.usersrols.UsuarioRoles.Rol_ID == id_rol).first()
     if db_userrol:
         for var, value in vars(userrol).items():
             setattr(db_userrol, var, value) if value else None
@@ -31,7 +31,7 @@ def update_userrol(db: Session, id_user: int, id_rol: int, userrol: schemas.user
     return db_userrol
 
 def delete_userrol(db: Session, id_user: int, id_rol:int):
-    db_userrol = db.query(models.usersrols.UserRol).filter(models.usersrols.UserRol.Usuario_ID == id_user, models.usersrols.UserRol.Rol_ID== id_rol).first()
+    db_userrol = db.query(models.usersrols.UsuarioRoles).filter(models.usersrols.UsuarioRoles.Usuario_ID == id_user, models.usersrols.UsuarioRoles.Rol_ID== id_rol).first()
     if db_userrol:
         db.delete(db_userrol)
         db.commit()
