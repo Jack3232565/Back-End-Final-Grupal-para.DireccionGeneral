@@ -8,7 +8,7 @@ from routes.users import user
 from routes.usuarios import usuario
 from routes.roles import roles
 from routes.tbb_usuarios import tbb_usuarios_router
-from routes.userrol import userrol
+from routes.usuario_roles import usuario_roles_router
 from routes.cirugia import cirugia_router
 from routes.horarios import horarios
 from routes.espacios import espacio
@@ -54,7 +54,7 @@ app.include_router(usuario, tags=["Usuarios"])
 app.include_router(person)
 app.include_router(roles)
 app.include_router(tbb_usuarios_router)
-app.include_router(userrol)
+app.include_router(usuario_roles_router)
 app.include_router(cirugia_router)
 app.include_router(horarios)
 app.include_router(espacio)
