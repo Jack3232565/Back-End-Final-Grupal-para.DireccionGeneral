@@ -27,7 +27,7 @@ def read_tbb_usuarios( db: Session = Depends(get_db)):
     db_tbb_usuarios = crud.tbb_usuarios.get_all_tbb_usuarios(db=db)
     return db_tbb_usuarios
 
-@tbb_usuarios_router.get("/tbb_usuarios/{id}", response_model=schemas.tbb_usuarios.tbb_usuario, tags=["Tbb_Usuarios"],  dependencies=[Depends(Portador())])
+@tbb_usuarios_router.get("/tbb_usuarios/{id}", response_model=schemas.tbb_usuarios.tbb_usuario, tags=["Tbb_Usuarios"])
 def read_tbb_usuario(id: int, db: Session = Depends(get_db)):
     db_tbb_usuario = crud.tbb_usuarios.get_tbb_usuario(db=db, id=id)
     if db_tbb_usuario is None:
@@ -46,14 +46,14 @@ def create_tbb_usuario(tbb_usuario: schemas.tbb_usuarios.tbb_usuarioCreate, db: 
 
     return crud.tbb_usuarios.create_tbb_usuario(db=db, tbb_usuario=tbb_usuario)
 
-@tbb_usuarios_router.put("/tbb_usuarios/{id}", response_model=schemas.tbb_usuarios.tbb_usuario, tags=["Tbb_Usuarios"], dependencies=[Depends(Portador())])
+@tbb_usuarios_router.put("/tbb_usuarios/{id}", response_model=schemas.tbb_usuarios.tbb_usuario, tags=["Tbb_Usuarios"])
 def update_tbb_usuario(id: int, tbb_usuario: schemas.tbb_usuarios.tbb_usuarioUpdate, db: Session = Depends(get_db)):
     db_tbb_usuario = crud.tbb_usuarios.update_tbb_usuario(db=db, id=id, tbb_usuario=tbb_usuario)
     if db_tbb_usuario is None:
         raise HTTPException(status_code=404, detail="Usuario no existe, no actualizado")
     return db_tbb_usuario
 
-@tbb_usuarios_router.delete("/tbb_usuarios/{id}", response_model=schemas.tbb_usuarios.tbb_usuario, tags=["Tbb_Usuarios"], dependencies=[Depends(Portador())])
+@tbb_usuarios_router.delete("/tbb_usuarios/{id}", response_model=schemas.tbb_usuarios.tbb_usuario, tags=["Tbb_Usuarios"])
 def delete_tbb_usuario(id: int, db: Session = Depends(get_db)):
     db_tbb_usuario = crud.tbb_usuarios.delete_tbb_usuario(db=db, id=id)
     if db_tbb_usuario is None:
