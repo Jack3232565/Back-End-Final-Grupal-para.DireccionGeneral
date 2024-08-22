@@ -1,0 +1,5 @@
+SQLALCHEMY_DATABASE_URL = "mysql+pymysql://avnadmin:AVNS_lNzvKQmQj_ss_2wdKBN@mysql-f8cb4f6-utxicotepec-4d57.e.aivencloud.com:22827/defaultdb"
+
+#configuracion de la base de datosm en aiven 
+SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root:1234@localhost:3306/BaseFinalPrueba"
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
