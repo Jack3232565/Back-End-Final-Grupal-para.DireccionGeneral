@@ -15,7 +15,7 @@ class Organo(Base):
     Edad_Donante = Column(Integer, nullable=True)
     Grupo_Sanguineo = Column(Enum('A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'), nullable=False)
     Estado_Salud = Column(Enum('Excelente', 'Bueno', 'Regular', 'Pobre', 'Crítico'), nullable=False)
-    Enfermedades_Transmisibles = Column(Boolean, nullable=False)
+    Enfermedades_Transmisibles = Column(Boolean, nullable=True)
 
     # Campos movidos al final
     Fecha_Registro = Column(DateTime(timezone=True), server_default=func.now(), nullable=False)

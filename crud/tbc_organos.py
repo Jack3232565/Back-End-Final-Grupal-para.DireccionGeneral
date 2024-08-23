@@ -2,8 +2,8 @@ from sqlalchemy.orm import Session
 import models.tbc_organos as models
 import schemas.tbc_organos as schemas
 
-def get_organos(db: Session):
-    return db.query(models.Organo).all()
+def get_organos(db: Session, skip: int = 0, limit: int = 50):
+    return db.query(models.Organo).offset(skip).limit(limit).all()
 
 def get_organo(db: Session, id: int):
     return db.query(models.Organo).filter(models.Organo.ID == id).first()

@@ -70,3 +70,4 @@ class Organo(OrganoBase):
 
     class Config:
         from_attributes = True
+
